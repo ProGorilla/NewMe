@@ -1,0 +1,44 @@
+<div class="header">
+    <ul>
+        <li>
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#">About Us</a>
+        </li>
+        <li>
+            <a href="#">How to Use</a>
+        </li>
+        <li>
+            <a href="#">Policy</a>
+        </li>
+    </ul>
+</div>
+
+<div class="main">
+    <h1>NewME / にゅーみぃー</h1>
+    <hr />
+    
+    <div class="search">
+
+            <%= form_tag({:controller => 'search', :action => 'new' },{ method: "get"}) do %>
+                <%= label_tag(:data, "Search for:") %>
+                <%= text_field_tag(:data) %>
+                <%= submit_tag("検索") %>
+            <% end %>
+    </div>
+    
+</div>
+
+<div class="result">
+    <div class="video">
+        <h2>Result</h2>
+        <% @youtube_data.items.each do |item| %>
+          <% snippet = item.snippet %>
+          <h3><%= snippet.title %></h3>
+          <p><%= snippet.published_at %><%= snippet.channel_title %></p>
+          <div><iframe width="560" height="315" src="https://www.youtube.com/embed/<%= item.id.video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            <hr />
+        <% end %>
+    </div>
+</div>
